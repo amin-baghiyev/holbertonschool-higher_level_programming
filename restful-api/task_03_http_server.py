@@ -33,6 +33,6 @@ class RequestHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"Endpoint not found")
 
-with socketserver.TCPServer(("", 8080), RequestHandler) as httpd:
-    print("Server is running on port: 8080")
+with socketserver.TCPServer(("", 8000), RequestHandler) as httpd:
+    print("Server is running on port: 8000")
     httpd.serve_forever()
