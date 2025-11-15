@@ -5,7 +5,7 @@
 def pascal_triangle(n):
     """Generates Pascal's Triangle up to n."""
     triangle = []
-    for i in range(n_rows):
+    for i in range(n):
         row = [1]
         if i > 0:
             prev_row = triangle[i - 1]
@@ -13,4 +13,4 @@ def pascal_triangle(n):
                 row.append(prev_row[j] + prev_row[j + 1])
             row.append(1)
         triangle.append(row)
-    return triangle
+    return (triangle)
