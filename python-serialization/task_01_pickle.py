@@ -14,8 +14,9 @@ class CustomObject():
 
     def display(self):
         """Print all attributes of the object"""
-        for k, v in self.__dict__.items():
-            print(f"{k}: {v}")
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Is Student: {self.is_student}")
 
     def serialize(self, filename):
         """Serialize the object to a file using pickle"""
