@@ -14,6 +14,12 @@ users = {
     "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
 }
 
+@auth.verify_password
+def verify_password(username, password):
+    if (username in users and check_password_hash(users[username]["password"], password)):
+        return (users[username])
+    return False
+
 @app.get("/basic-protected")
 @auth.login_required
 def basic_protected():
@@ -22,7 +28,7 @@ def basic_protected():
 @app.post("/login")
 def login():
     user = users.get(request.json["username"])
-    if (user and check_password_hash(user["password"], request.json["password"])):
+    if (user and check_password_hash(user["password"], request.json.get("password"))):
         return (jsonify({"access_token": create_access_token(identity=username, additional_claims={"role": user["role"]})}))
 
 @app.get("/jwt-protected")
