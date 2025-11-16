@@ -29,7 +29,7 @@ def basic_protected():
 def login():
     user = users.get(request.json["username"])
     if (user and check_password_hash(user["password"], request.json.get("password"))):
-        return (jsonify({"access_token": create_access_token(identity=username, additional_claims={"role": user["role"]})}))
+        return (jsonify({"access_token": create_access_token(identity=user["username"], additional_claims={"role": user["role"]})}))
 
 @app.get("/jwt-protected")
 @jwt_required()
