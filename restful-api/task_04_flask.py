@@ -31,7 +31,7 @@ def add_user():
     if (request.json["username"] in users):
         return (jsonify({"error":"Username already exists"}), 409)
     users[request.json["username"]] = request.json
-    return (jsonify({"message": "User added", "user": users[request.json["username"]]}))
+    return (jsonify({"message": "User added", "user": users[request.json["username"]]}), 201)
 
 if (__name__ == "__main__"):
     app.run()
