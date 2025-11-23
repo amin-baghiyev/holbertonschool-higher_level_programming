@@ -1,15 +1,22 @@
 #!/usr/bin/python3
-from sys import argv
-import MySQLdb
+"""lists all states from the database"""
 
-db = MySQLdb.connect(host="localhost", user=argv[1], passwd=argv[2], db=argv[3], port=3306)
-cursor = db.cursor()
+if __name__ == "__main__":
+    from sys import argv
+    import MySQLdb
 
-cursor.execute("SELECT * FROM states");
+    db = MySQLdb.connect(
+        host="localhost",
+        user=argv[1], passwd=argv[2], db=argv[3],
+        port=3306
+    )
+    cursor = db.cursor()
 
-rows = cursor.fetchall()
-for row in rows:
-    print(row)
+    cursor.execute("SELECT * FROM states")
 
-cursor.close()
-db.close()
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+
+    cursor.close()
+    db.close()
